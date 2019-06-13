@@ -1,0 +1,50 @@
+How do I create snapshots for VDC account?	answer_0
+How to create AWS AMI?	answer_2
+How can the storage of RDS be modified?	answer_4
+How can I migrate RDS snapshot to another region for WK VDC account that is managed by GBS IT?	answer_6
+Explain SNOW report creation Guidelines.	answer_8
+What are the guidelines for SNOW report creation?	answer_10
+For the WK VDC account managed by GBS IT, using azure native backup how can I restore VM?	answer_12
+What are the best practices for sharing resources within a storage account in Azure?	answer_14
+Explain the procedure for handling WK Alert.	answer_16
+How can i use Recovery Series Vault to restore VM for WK VDC account managed by GBS IT?	answer_18
+What is ICC Monitoring?	answer_20
+What is the method for verifying the configuration for Load Balance Pair?	answer_22
+What is the procedure for creating lambda function for AMI retention for the WK VDC account that is managed by GBS IT?	answer_24
+What is the procedure for creating lambda function for AMI creation for the WK VDC account that is managed by GBS IT?	answer_26
+How can a VM be provisioned in AWS?	answer_28
+Explain how to provision a VM in AWS?	answer_30
+What is the Backup Policy for WK VDC account managed by GBS IT?	answer_32
+For multiple windows host how to renew IP configurations remotely?	answer_34
+What is Alert Standard Operating Procedure?	answer_36
+How do I create Recovery Services (Backup) Vault for WK VDC account managed by GBS IT?	answer_38
+How to restore VM from Recovery Services (Backup) Vault for WK VDC account managed by GBS IT?	answer_40
+How many hours of credit do I get for each research study?	answer_42
+Where do I sign up for research studies?	answer_44
+When can I start to participate in research studies?	answer_46
+How many online surveys can I participate in?	answer_48
+What is prescreening?	answer_50
+Do I have to do the prescreening?	answer_52
+When and where can I take the prescreening questionnaire?	answer_54
+Can I still participate in research studies if I do not do the prescreening?	answer_56
+My visa will expire while I am in the United States. Is there a problem with that?	answer_58
+What are indefinite validity visas (Burroughs visas) and are they still valid?	answer_60
+What is Administrative Processing?	answer_62
+My visa application has been refused. Why can't I get my money back?	answer_64
+I have a nonimmigrant visa that will expire soon and I would like to renew it. Do I need go through the whole visa application process again?	answer_66
+After I have my visa, I will be able to enter the U.S., correct?	answer_68
+How can I find out how long I am authorized to stay in the United States?	answer_70
+I did not turn in my paper Form I-94 when I left the United States, what should I do?	answer_72
+My passport with my visa was stolen, what should I do?	answer_74
+My visa was damaged. What should I do?	answer_76
+I may have a claim to U.S. citizenship. Can I apply for a U.S. visa?	answer_78
+I have dual citizenship. Which passport should I use to travel to the United States?	answer_80
+How do I know whether to contact the Department of State or Department of Homeland Security about my issue?	answer_82
+I would like to know if my friend has applied for a visa and what the status is. Who should I contact?	answer_84
+What are the various passport services and which form has to be filled in?	answer_86
+The Surname field is blank on my passport. And my full name is written in the Given Name field. Could anybody tell the process to add the surname to my passport?	answer_88
+Can Police Clearance Certificate be issued for more than one country through one application form?	answer_90
+What is Global Entry Program (GEP)?	answer_92
+What is Background verification for GEP? In which case I need to apply for this?	answer_94
+How do I apply for a Background Verification for GEP?	answer_96
+Do I need to visit PSK/PBO to submit my Background Verification for GEP application?	answer_98
