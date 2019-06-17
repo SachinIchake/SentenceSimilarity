@@ -3,8 +3,6 @@ import os
 import gridfs
 import pymongo as pymongo
 
-from constants import *
-
 
 
 class DBUtil:
@@ -19,10 +17,10 @@ class DBUtil:
             if cls.connection is not None:
                 return cls.connection
 
-            config = ConfigProvider.getConfig()
+
             import util.Constants as CommonConstants            
             dbUrl = CommonConstants.ENV["DB_URL_BOT"]
-            dbSchema = config.get('mongo', 'botSchema')
+            dbSchema = 'QNASchema'
             mongoClient = pymongo.MongoClient(dbUrl)
             cls.connection = mongoClient[dbSchema]
         except Exception as e:

@@ -13,18 +13,19 @@ class semtenceSimilarity:
     def __init__(self):
         try:
             self.userQuery = ''
-            self.checker_session = tf.Session()
-            # self.sentence_embed = hub.Module(Constants.ENV["TFHUB_SENTENCE_MODEL_DIR"])
-            self.sentence_embed = hub.Module('/home/atom/Git/embeddings/sentence_model/')
-            self.sts_encode11 = tf.placeholder(tf.float32, shape=(None, 512))
-            self.sts_encode3 = tf.placeholder(tf.float32, shape=(None, 512))
+            self.ss_Session = tf.Session()
+            # self.sentence_embedding = hub.Module(Constants.ENV["TFHUB_SENTENCE_MODEL_DIR"])
+            # self.sentence_embedding = hub.Module('/home/atom/Git/embeddings/tf-model/')
+            self.sentence_embedding = hub.Module('/home/atom/Git/embeddings/sentence_model/')
+            self.sts_encoding_1 = tf.placeholder(tf.float32, shape=(None, 512))
+            self.sts_encoding_3 = tf.placeholder(tf.float32, shape=(None, 512))
 
             self.sts_input2 = tf.placeholder(tf.string, shape=(None))
-            self.sts_encode2 = self.sentence_embed(self.sts_input2)
+            self.sts_encoding_2 = self.sentence_embedding(self.sts_input2)
 
             self.sim_scores = tf.reduce_sum(
-                tf.multiply(self.sts_encode11, tf.nn.l2_normalize(self.sts_encode3)), axis=1)
-            with self.checker_session.as_default() as sess:
+                tf.multiply(self.sts_encoding_1, tf.nn.l2_normalize(self.sts_encoding_3)), axis=1)
+            with self.ss_Session.as_default() as sess:
                 sess.run(tf.global_variables_initializer())
                 sess.run(tf.tables_initializer())
         except Exception as e:
@@ -32,7 +33,7 @@ class semtenceSimilarity:
 
     def getUniqueData(self):
         self.uniqueData = []
-        with open('/home/atom/UST/SentenceSimilarity/trainingData.txt') as fp:
+        with open('/home/atom/UST/SentenceSimilarity/data/trainingData.txt') as fp:
             for line in fp.readlines():
                 if line != '\n':
                     query = line.split('\t')[0].lstrip()
@@ -45,15 +46,15 @@ class semtenceSimilarity:
 
     def embed_customer_data(self, customer_all_statement):
 
-        sts_encode1 = tf.nn.l2_normalize(self.sentence_embed(customer_all_statement))
-        sts_encode1 = self.checker_session.run(sts_encode1)
+        sts_encode1 = tf.nn.l2_normalize(self.sentence_embedding(customer_all_statement))
+        sts_encode1 = self.ss_Session.run(sts_encode1)
         self.trainingDataEmbd =  sts_encode1
 
     def loadTrainingData(self):
         self.getUniqueData()
         self.embed_customer_data(self.column(self.uniqueData,0))
 
-    def process(self,userQuery):
+    def processSentence(self,userQuery):
 
         max_score, matched_statement, matching_answer = self.calcualteScore(userQuery, self.uniqueData)
 
@@ -69,8 +70,8 @@ class semtenceSimilarity:
     def calculateConfidence(self, userQuery, text_b):
         """Returns the similarity scores"""
         matchingsentence, sentence,matchingAnswer = None, None,None
-        sess = self.checker_session
-        emebb = sess.run([self.sts_encode2], feed_dict={self.sts_input2: userQuery})
+        sess = self.ss_Session
+        emebb = sess.run([self.sts_encoding_2], feed_dict={self.sts_input2: userQuery})
         embedding_uq_list = []
         for i in range(len(self.uniqueData)):
             embedding_uq_list.append(emebb[0])
@@ -78,8 +79,8 @@ class semtenceSimilarity:
         scores = sess.run(
             [self.sim_scores],
             feed_dict={
-                self.sts_encode11: self.trainingDataEmbd,
-                self.sts_encode3: embedding_uq_list
+                self.sts_encoding_1: self.trainingDataEmbd,
+                self.sts_encoding_3: embedding_uq_list
             })
 
         Confidence_Score = (scores[0] * len(self.uniqueData)) * 100.
@@ -114,13 +115,3 @@ class semtenceSimilarity:
 
         return max_score, matched_statement
 
-
-if __name__ == "__main__":
-
-    # userQuery = 'How do I create snapshots for VDC account?'
-
-    sc = semtenceSimilarity()
-    sc.loadTrainingData()
-    while(1):
-        userQuery = input('-->')
-        max_score, matched_statement,matchingAnswer = sc.process(userQuery)
