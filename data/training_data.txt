@@ -23,10 +23,10 @@ How many hours of credit do I get for each research study?	answer_42
 Where do I sign up for research studies?	answer_44
 When can I start to participate in research studies?	answer_46
 How many online surveys can I participate in?	answer_48
-What is prescreening?	answer_50
-Do I have to do the prescreening?	answer_52
-When and where can I take the prescreening questionnaire?	answer_54
-Can I still participate in research studies if I do not do the prescreening?	answer_56
+What is pre screening?	answer_50
+Do I have to do the pre screening?	answer_52
+When and where can I take the pre screening questionnaire?	answer_54
+Can I still participate in research studies if I do not do the pre screening?	answer_56
 My visa will expire while I am in the United States. Is there a problem with that?	answer_58
 What are indefinite validity visas (Burroughs visas) and are they still valid?	answer_60
 What is Administrative Processing?	answer_62
@@ -48,3 +48,17 @@ What is Global Entry Program (GEP)?	answer_92
 What is Background verification for GEP? In which case I need to apply for this?	answer_94
 How do I apply for a Background Verification for GEP?	answer_96
 Do I need to visit PSK/PBO to submit my Background Verification for GEP application?	answer_98
+What is the procedure for creating lambda function for AMI creation for the WK VDC account that is managed by GBS IT?	answer_26
+How can a VM be provisioned in AWS?	answer_28
+Explain how to provision a VM in AWS?	answer_30
+What is the Backup Policy for WK VDC account managed by GBS IT?	answer_32
+For multiple windows host how to renew IP configurations remotely?	answer_34
+What is Alert Standard Operating Procedure?	answer_36
+How do I create Recovery Services (Backup) Vault for WK VDC account managed by GBS IT?	answer_38
+How to restore VM from Recovery Services (Backup) Vault for WK VDC account managed by GBS IT?	answer_40
+How many hours of credit do I get for each research study?	answer_42
+Where do I sign up for research studies?	answer_44
+When can I start to participate in research studies?	answer_46
+How many online surveys can I participate in?	answer_48
+What is pre screening?	answer_50
+Do I have to do the pre screening?	answer_52

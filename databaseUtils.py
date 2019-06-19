@@ -1,9 +1,7 @@
-import os
 
-import gridfs
 import pymongo as pymongo
 
-
+from  config.constants import ENV
 
 class DBUtil:
     connection = None
@@ -18,11 +16,12 @@ class DBUtil:
                 return cls.connection
 
 
-            import util.Constants as CommonConstants            
-            dbUrl = CommonConstants.ENV["DB_URL_BOT"]
-            dbSchema = 'QNASchema'
+
+            dbUrl = ENV["MONGO_HOST"]
+            dbSchema = ENV["MONGO_DB"]
             mongoClient = pymongo.MongoClient(dbUrl)
             cls.connection = mongoClient[dbSchema]
+
         except Exception as e:
             print(e)
         return cls.connection
@@ -35,7 +34,11 @@ class DBUtil:
             skipValue = (pageNumber - 1) * pageSize
             limitValue = pageSize
             response = connection[tableName].find(filterDict).skip(skipValue).limit(limitValue).sort(*sort)
-            return list(response)
+            with open(ENV["TRAINING_DATA"],'w') as fp:
+                for doc in response:
+                    dataToWrite = doc['question'] + '\t' + doc['answer'] + '\n'
+                    fp.write(dataToWrite)
+
         except Exception as e:
             print("Exception in getData for " + tableName)
             print(e)
@@ -53,19 +56,11 @@ class DBUtil:
             print("Exception in getData for " + tableName)
             print(e)
 
-    @classmethod
-    def insert(cls, tableName, data={}):
-        try:
-            connection = cls.getConnection()
-            response = connection[tableName].insert(data)
-            return response
-        except Exception as e:
-            print("Exception in getData for " + tableName)
-            print(e)
 
-    @classmethod
-    def storeFile(cls, filePath, fileName):
-        connection = cls.getConnection()
-        fs = gridfs.GridFS(connection, collection="TFModelStorage")
-        fileId = fs.put(open(filePath, 'rb'), filename=fileName)
-        return fileId
+
+def main():
+    # DBUtil.getConnection()
+    DBUtil.getData('kb_qna',{'kb_id':1})
+
+if __name__ == '__main__':
+    main()
