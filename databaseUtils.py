@@ -1,7 +1,7 @@
-
 import pymongo as pymongo
 
-from  config.constants import ENV
+from config.constants import ENV
+
 
 class DBUtil:
     connection = None
@@ -14,9 +14,6 @@ class DBUtil:
         try:
             if cls.connection is not None:
                 return cls.connection
-
-
-
             dbUrl = ENV["MONGO_HOST"]
             dbSchema = ENV["MONGO_DB"]
             mongoClient = pymongo.MongoClient(dbUrl)
@@ -34,11 +31,10 @@ class DBUtil:
             skipValue = (pageNumber - 1) * pageSize
             limitValue = pageSize
             response = connection[tableName].find(filterDict).skip(skipValue).limit(limitValue).sort(*sort)
-            with open(ENV["TRAINING_DATA"],'w') as fp:
+            with open(ENV["TRAINING_DATA"], 'w') as fp:
                 for doc in response:
                     dataToWrite = doc['question'] + '\t' + doc['answer'] + '\n'
                     fp.write(dataToWrite)
-
         except Exception as e:
             print("Exception in getData for " + tableName)
             print(e)
@@ -57,10 +53,9 @@ class DBUtil:
             print(e)
 
 
-
 def main():
-    # DBUtil.getConnection()
-    DBUtil.getData('kb_qna',{'kb_id':1})
+    DBUtil.getData('kb_qna', {'kb_id': 1})
+
 
 if __name__ == '__main__':
     main()
