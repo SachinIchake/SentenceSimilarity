@@ -6,15 +6,15 @@ class SessionManager:
     def initialiseSession(self):
         pass
 
-    # @classmethod
-    # def getKbIds(cls, kbid):
-    #     if len(all_global_var.modelSessionList) == 0:
-    #         return 0
-    #     else:
-    #         for id in all_global_var.all_kbids:
-    #             if id == kbid:
-    #                 return 1
-    #         return 0
+    @classmethod
+    def getKbIds(cls, kbid):
+        if len(all_global_var.all_kbids) == 0:
+            return 0
+        else:
+            for id in all_global_var.all_kbids:
+                if id == kbid:
+                    return 1
+            return 0
 
     @classmethod
     def getModelSessionList(self):

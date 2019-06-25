@@ -21,9 +21,10 @@ class ConfidenceCheckerService:
     @classmethod
     def initilize_placeholders(cls):
         try:
+
+            all_global_var.checker_session = tf.Session()
             all_global_var.all_kbids = {}
             all_global_var.modelSessionList = {}
-            all_global_var.checker_session = tf.Session()
             all_global_var.sentence_embed = hub.Module(constants.ENV["TFHUB_SENTENCE_MODEL_DIR"])
             all_global_var.sts_encode11 = tf.placeholder(tf.float32, shape=(None, 512))
             all_global_var.sts_encode3 = tf.placeholder(tf.float32, shape=(None, 512))
@@ -70,9 +71,9 @@ class ConfidenceCheckerService:
 
     @classmethod
     def loadTrainedDataConfidence(cls, kbid):
-        is_model_loaded = SessionManager.getKbIds(kbid)
+        is_model_loaded = SessionManager.getModelSessionByKbid(kbid)
 
-        if is_model_loaded == 0:
+        if not is_model_loaded :
             try:
                 unique_data_list = DBUtil.getData('kb_qna', {'kb_id': kbid})
                 unique_statement_list = cls.create_only_statements_list(unique_data_list)
@@ -134,9 +135,11 @@ class ConfidenceCheckerService:
 
 if __name__ == "__main__":
     ConfidenceCheckerService.initilize_placeholders()
-    ConfidenceCheckerService.loadTrainedDataConfidence(kbid=1)
-    # while (1):
-    #     userQuery = input('--> ')
-    userQuery = 'How many online surveys can I participate'
-    matched_statement = ConfidenceCheckerService.process(userQuery=userQuery, kbid=1, topN=15)
-    print(matched_statement)
+
+    while (1):
+        # userQuery = input('--> ')
+        userQuery = 'Explain SNOW report creation Guidelines'
+        kbid = int(input('KBID-->'))
+        ConfidenceCheckerService.loadTrainedDataConfidence(kbid=kbid)
+        matched_statement = ConfidenceCheckerService.process(userQuery=userQuery, kbid=kbid, topN=5)
+        print(matched_statement)
