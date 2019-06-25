@@ -31,10 +31,15 @@ class DBUtil:
             skipValue = (pageNumber - 1) * pageSize
             limitValue = pageSize
             response = connection[tableName].find(filterDict).skip(skipValue).limit(limitValue).sort(*sort)
-            with open(ENV["TRAINING_DATA"], 'w') as fp:
-                for doc in response:
-                    dataToWrite = doc['question'] + '\t' + doc['answer'] + '\n'
-                    fp.write(dataToWrite)
+
+            all_question_list = []
+            for i, doc in enumerate(response):
+                all_question_list.append([])
+                all_question_list[i].append(doc['question'])
+                all_question_list[i].append(doc['answer'])
+
+            return all_question_list
+
         except Exception as e:
             print("Exception in getData for " + tableName)
             print(e)

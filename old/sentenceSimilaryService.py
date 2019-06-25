@@ -48,6 +48,7 @@ class semtenceSimilarity:
     def processSentence(self, userQuery, top_n):
 
         matching_answer = self.calcualteScore(userQuery, self.uniqueData, top_n)
+        return matching_answer
 
     def column(self, matrix, i):
         return [row[i] for row in matrix]
