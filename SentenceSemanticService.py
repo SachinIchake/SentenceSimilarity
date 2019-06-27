@@ -112,7 +112,7 @@ class ConfidenceCheckerService:
         uniqueData = np.array(statement_list)
 
         matchingAnswer = sorted(
-            list(zip(ConfidenceCheckerService.column(uniqueData, 0), Confidence_Score, text_b,
+            list(zip(ConfidenceCheckerService.column(uniqueData, 0), Confidence_Score, ConfidenceCheckerService.column(uniqueData, 2),
                      ConfidenceCheckerService.column(uniqueData, 1))),
             key=lambda x: x[1], reverse=True)[0:topN]
         return matchingAnswer

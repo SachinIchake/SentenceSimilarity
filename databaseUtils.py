@@ -37,6 +37,7 @@ class DBUtil:
                 all_question_list.append([])
                 all_question_list[i].append(doc['question'])
                 all_question_list[i].append(doc['answer'])
+                all_question_list[i].append(doc['q_id'])
 
             return all_question_list
 
@@ -58,9 +59,3 @@ class DBUtil:
             print(e)
 
 
-def main():
-    DBUtil.getData('kb_qna', {'kb_id': 1})
-
-
-if __name__ == '__main__':
-    main()

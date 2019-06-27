@@ -24,13 +24,15 @@ def runReload():
         kbid = json.loads(request.data)['kbid']
         print(kbid)
 
+        SessionManager.deleteModelSessionByKbid(kbid)
+
         ConfidenceCheckerService.initilize_placeholders()
 
 
         ConfidenceCheckerService.loadTrainedDataConfidence(kbid)
-        return  jsonify({"Result":"Model loaded succefully"})
+        return  jsonify({"status":"success"})
     except Exception as e:
-        return  jsonify({"Result":"Error while loading the model."})
+        return  jsonify({"status":"failure"})
 
 
 
@@ -39,9 +41,9 @@ def runReload():
 @app.route('/predict', methods=['GET', 'POST'])
 def runPrediction():
     try:
-        userQuery = json.loads(request.data)['query']
-        kbid = json.loads(request.data)['kbid']
-        topN = json.loads(request.data)['TopN']
+        userQuery = json.loads(request.data)['question']
+        kbid = json.loads(request.data)['kb_id']
+        topN = json.loads(request.data)['top_n']
         print(userQuery)
         print(kbid)
 
@@ -55,8 +57,8 @@ def runPrediction():
         print(matched_statement)
 
         result = []
-        for match_question,matched_score,statement,answer  in matched_statement:
-            result.append({ "matched_statement": match_question, "score": str(matched_score),"statement": statement,"matched_answer": answer})
+        for match_question,matched_score,question_id,answer  in matched_statement:
+            result.append({ "matched_question_id": question_id, "matched_question": match_question, "score": str(matched_score),"answer": answer})
 
         return jsonify(result)
 
