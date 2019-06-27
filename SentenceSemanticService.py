@@ -23,8 +23,7 @@ class ConfidenceCheckerService:
         try:
 
             all_global_var.checker_session = tf.Session()
-            all_global_var.all_kbids = {}
-            all_global_var.modelSessionList = {}
+
             all_global_var.sentence_embed = hub.Module(constants.ENV["TFHUB_SENTENCE_MODEL_DIR"])
             all_global_var.sts_encode11 = tf.placeholder(tf.float32, shape=(None, 512))
             all_global_var.sts_encode3 = tf.placeholder(tf.float32, shape=(None, 512))
@@ -138,7 +137,7 @@ if __name__ == "__main__":
 
     while (1):
         # userQuery = input('--> ')
-        userQuery = 'Explain SNOW report creation Guidelines'
+        userQuery = 'Do I have to do the pre screening?'
         kbid = int(input('KBID-->'))
         ConfidenceCheckerService.loadTrainedDataConfidence(kbid=kbid)
         matched_statement = ConfidenceCheckerService.process(userQuery=userQuery, kbid=kbid, topN=5)

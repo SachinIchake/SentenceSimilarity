@@ -26,6 +26,12 @@ class SessionManager:
         modelSession = modelSessions.get(kbid, {})
         return modelSession
 
+    def deleteModelSessionByKbid(self,kbid):
+         modelSession = self.getModelSessionList()
+         try:
+             del modelSession[kbid]
+         except Exception as ex :
+             print('model is not loaded for kbid: '+ str(kbid))
     @classmethod
     def setModelSessionByKbid(self, kbid, model_session=None):
         try:
