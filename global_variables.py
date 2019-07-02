@@ -1,12 +1,10 @@
-import tensorflow as tf
-
 
 global modelSessionList
 global all_kbids
 
 
 
-global checker_session
+global kbid_session
 global sentence_embed
 global Statements
 global AllStatements

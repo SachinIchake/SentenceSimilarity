@@ -1,4 +1,4 @@
-import all_global_var
+import global_variables
 
 
 class SessionManager:
@@ -6,19 +6,9 @@ class SessionManager:
     def initialiseSession(self):
         pass
 
-    # @classmethod
-    # def getKbIds(cls, kbid):
-    #     if len(all_global_var.modelSessionList) == 0:
-    #         return 0
-    #     else:
-    #         for id in all_global_var.all_kbids:
-    #             if id == kbid:
-    #                 return 1
-    #         return 0
-
     @classmethod
     def getModelSessionList(self):
-        return all_global_var.modelSessionList
+        return global_variables.modelSessionList
 
     @classmethod
     def getModelSessionByKbid(self, kbid):
@@ -33,7 +23,7 @@ class SessionManager:
              del modelSession[kbid]
          except Exception as ex :
              pass
-             # print('model is not loaded for kbid: '+ str(kbid))
+
 
     @classmethod
     def setModelSessionByKbid(self, kbid, model_session=None):
@@ -43,7 +33,7 @@ class SessionManager:
                 modelSession[kbid] = {}
 
             modelSession[kbid] = model_session
-            return modelSession
+            # return modelSession
         except Exception as ex:
             print(ex)
             raise ex
